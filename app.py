@@ -14,6 +14,18 @@ def load_data():
 
 df = load_data()
 
+# Debug: Show columns and first rows to verify dataset
+st.write("Columns in dataset:", df.columns.tolist())
+st.write(df.head())
+
+# Strip column names of whitespace
+df.columns = df.columns.str.strip()
+
+# Check if 'quality' column exists
+if "quality" not in df.columns:
+    st.error("Column 'quality' not found in dataset. Please check your CSV file.")
+    st.stop()
+
 # Title
 st.title("🍷 Wine Quality Prediction App")
 
